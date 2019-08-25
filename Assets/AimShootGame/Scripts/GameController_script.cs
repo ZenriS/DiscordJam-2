@@ -71,18 +71,28 @@ public class GameController_script : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void RoundOver(bool w)
+    public void RoundOver(bool w, bool draw = false)
     {
         Time.timeScale = 0;
         GameIsRunning = false;
         EnemyActions.RoundOver();
         _playerControlls.RoundOver();
-        if (w)
+        if (draw)
+        {
+            _uiManangerScript.ToggleRoundOverScreen(w, _rounds, "Draw!\nBoth ran out of bullets");
+            PlayerStatesScrips.ModifyBullets(1);
+        }
+        else if (w)
         {
             PlayerStatesScrips.ModifyCash(EnemyActions.Bounty);
+            _uiManangerScript.ToggleRoundOverScreen(w, _rounds,"Winner!");
             _rounds++;
         }
-        _uiManangerScript.ToggleRoundOverScreen(w, _rounds);
+        else if(!w)
+        {
+            _uiManangerScript.ToggleRoundOverScreen(w, _rounds, "Dead!");
+        }
+        
     }
 
 }

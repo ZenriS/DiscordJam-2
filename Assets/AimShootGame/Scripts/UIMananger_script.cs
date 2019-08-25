@@ -32,12 +32,12 @@ public class UIMananger_script : MonoBehaviour
         _countDownText.text = s;
     }
 
-    public void ToggleRoundOverScreen(bool w, int r)
+    public void ToggleRoundOverScreen(bool w, int r, string s)
     {
         RoundOverScreen.SetActive(true);
         if (w)
         {
-            _roundOverTitle.text = "Winner!";
+            _roundOverTitle.text = s;
             _roundOverCashText.text = "Current Cash\n " + _gameController.PlayerStatesScrips.Cash;
             _storeManagerScript.UpdateUI();
             _roundOverGrid.transform.GetChild(0).gameObject.SetActive(false);
@@ -46,7 +46,7 @@ public class UIMananger_script : MonoBehaviour
         }
         else
         {
-            _roundOverTitle.text = "Dead!";
+            _roundOverTitle.text = s;
             _roundOverCashText.text = "You survived " + r + " rounds.\nWant to try again?";
             _roundOverGrid.transform.GetChild(0).gameObject.SetActive(true);
             _roundOverGrid.transform.GetChild(1).gameObject.SetActive(false);
@@ -56,7 +56,7 @@ public class UIMananger_script : MonoBehaviour
 
     public void SetupStartScreen(int c)
     {
-        _roundOverTitle.text = "Jetpack Duel";
+        _roundOverTitle.text = "Jetpack Duels";
         _roundOverCashText.text = "Current cash\n" + c;
         RoundOverScreen.SetActive(true);
     }

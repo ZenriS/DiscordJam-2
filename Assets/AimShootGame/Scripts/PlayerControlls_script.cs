@@ -70,6 +70,10 @@ public class PlayerControlls_script : MonoBehaviour
         else
         {
             _effectsManager.PlayAudioClip(3);
+            if (GameController.EnemyActions.Bullets <= 0)
+            {
+                GameController.RoundOver(true,true);
+            }
             //click sound
             //Game Over?
         }
